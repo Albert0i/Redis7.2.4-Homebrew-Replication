@@ -12,4 +12,11 @@ md 6379 6380 6381
 
 The rest is history... 
 
-*Note: It seems there is a strange relationship between `default` user and failover mechanism.*
+---
+
+Strangely enough, It seems that *sentinels* have to use `default` user to promote slave upon master failure even I add `masteruser` to `redis.conf`. That also means adding
+```
+user default off 
+```
+
+in `acl.conf` would impede the failover. `acl genpass` is used to generate a strong password to mend this hole... 
