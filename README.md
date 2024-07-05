@@ -11,3 +11,5 @@ md 6379 6380 6381
 ![alt make](make.JPG)
 
 The rest is history... 
+
+*Note: It seems there is a strange relationship between `default` user and failover mechanism.*
