@@ -40,7 +40,7 @@ build:
 # start the server
 #
 up:
-	xcopy /S /Y /V conf.bak conf
+	xcopy /S /Y /V conf.bak conf 
 	docker-compose up -d --remove-orphans
 
 #
