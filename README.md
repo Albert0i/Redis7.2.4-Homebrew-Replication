@@ -1,4 +1,4 @@
-### Redis7.2.4-Homebrew-BasicReplication
+### Redis7.2.4-Homebrew-Replication
 
 Rename `dotenv` to `.env` and set parameters accordingly. 
 
