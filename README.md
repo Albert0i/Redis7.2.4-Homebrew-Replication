@@ -19,7 +19,9 @@ The rest is history...
 
 Strange enough! *Sentinel* has intriguing bearing on `ACL`... 
 
-According to instructions on [RU330](https://redis.io/university/courses/ru330/) to disable `default` user in `acl.conf` 
+
+I. System setup
+According to instructions on [RU330](https://redis.io/university/courses/ru330/), to disable `default` user in `acl.conf` 
 ```
 user default off 
 ```
@@ -53,9 +55,11 @@ However, this is not the case when *sentinels* come in sight... According to ins
 sentinel auth-pass <myprimary> <master-password>
 ```
 
-But there no such thing as `sentinel auth-user` subcommand. Which means it is forbidden to tamper `default` user or else failover mechanism would fail. Stranger than strange! As a matter fact, when using `default` user with `ACL` together, it would left the system unprotected...
+But there no such thing as `sentinel auth-user` subcommand. 
 
 ![alt sentinel subcommand auth-user](img/sentinel-auth-user.JPG)
+
+Which means it is forbidden to tamper `default` user or else failover mechanism would simply fail. Stranger than strange! As a matter fact, when using `default` user with `ACL` together, it would left the system unprotected...
 
 
 **Corollary**
@@ -64,5 +68,38 @@ Don't use `ACL`, secure `default` user with strong password.
 ```
 ACL GENPASS 
 ```
+
+
+II. Check to see if failover success 
+```
+make up 
+make master 
+docker-compose stop primary
+make ps 
+make master 
+```
+
+
+III. Check to see if `default` user is password protected
+```
+redis-cli -p 6381
+ping
+auth <master-password>
+info replication
+exit
+```
+
+
+IV. Check to see if we can manually failover a server
+```
+make sentinel
+SENTINEL SENTINELS myprimary
+SENTINEL REPLICAS myprimary
+SENTINEL GET-MASTER-ADDR-BY-NAME myprimary
+SENTINEL FAILOVER myprimary
+SENTINEL GET-MASTER-ADDR-BY-NAME myprimary
+exit
+``` 
+
 
 ### EOF (2024/07/08)
