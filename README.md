@@ -102,4 +102,19 @@ exit
 ``` 
 
 
+#### V. Re-check ex-primary status 
+```
+make up 
+make replication
+make role
+```
+
+
+#### VI. Restore config
+```
+make down 
+make reset
+```
+
+
 ### EOF (2024/07/08)
