@@ -24,6 +24,8 @@ services:
     volumes:
       - ${CONFIG_DIR}\conf\primary:c:\conf:ro
       - ${CONFIG_DIR}\data\6379:c:\data:rw
+    restart: 
+      unless-stopped
     networks:
       re_cluster:
         ipv4_address: 192.168.1.11
@@ -43,6 +45,8 @@ services:
     volumes:
       - ${CONFIG_DIR}\conf\replica1:c:\conf:ro
       - ${CONFIG_DIR}\data\6380:c:\data:rw
+    restart: 
+      unless-stopped
     networks:
       re_cluster:
         ipv4_address: 192.168.1.12
@@ -64,6 +68,8 @@ services:
     volumes:
       - ${CONFIG_DIR}\conf\replica2:c:\conf:ro
       - ${CONFIG_DIR}\data\6381:c:\data:rw
+    restart: 
+      unless-stopped      
     networks:
       re_cluster:
         ipv4_address: 192.168.1.13
@@ -84,6 +90,8 @@ services:
       ["redis-server",  "c:\\conf\\redis.conf", "--sentinel"]
     volumes:
       - ${CONFIG_DIR}\conf\sentinel1:c:\conf:rw
+    restart: 
+      unless-stopped
     networks:
       re_cluster:
         ipv4_address: 192.168.1.14
@@ -106,6 +114,8 @@ services:
       ["redis-server",  "c:\\conf\\redis.conf", "--sentinel"]
     volumes:
       - ${CONFIG_DIR}\conf\sentinel2:c:\conf:rw
+    restart: 
+      unless-stopped
     networks:
       re_cluster:
         ipv4_address: 192.168.1.15
@@ -128,6 +138,8 @@ services:
       ["redis-server",  "c:\\conf\\redis.conf", "--sentinel"]
     volumes:
       - ${CONFIG_DIR}\conf\sentinel3:c:\conf:rw
+    restart: 
+      unless-stopped      
     networks:
       re_cluster:
         ipv4_address: 192.168.1.16
@@ -137,5 +149,5 @@ services:
         - replica2
 
 #
-# EOF (2024/07/03)
+# EOF (2024/07/08)
 #

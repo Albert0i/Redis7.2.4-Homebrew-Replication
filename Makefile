@@ -28,6 +28,8 @@ help:
 	@echo "	info		replication info"
 	@echo "	role		replication role"
 	@echo "	master		replication master"
+	@echo "	sentinel	start redis-cli on sentinel1"
+	@echo "	reset		reset replication master"
 	@echo "	config		edit configuration"
 
 #
@@ -40,7 +42,6 @@ build:
 # start the server
 #
 up:
-	xcopy /S /Y /V conf.bak conf 
 	docker-compose up -d --remove-orphans
 
 #
@@ -89,7 +90,19 @@ role:
 # replication master
 #
 master:	
-	redis-cli -p 5000 SENTINEL get-master-addr-by-name myprimary
+	redis-cli -p 5000 --user ${AUTH_USER} --pass ${AUTH_PASS} --no-auth-warning SENTINEL get-master-addr-by-name myprimary
+
+#
+# start redis-cli on sentinel
+#
+sentinel:
+	redis-cli -p 5000 --user ${AUTH_USER} --pass ${AUTH_PASS} --no-auth-warning 
+
+#
+# reset replication master
+#
+reset:	
+	xcopy /S /Y /V conf.bak conf 
 
 #
 # edit configuration
@@ -98,5 +111,5 @@ config:
 	nano .env
 
 #
-# EOF (2024/07/04)
+# EOF (2024/07/08)
 #
