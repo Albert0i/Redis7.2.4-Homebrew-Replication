@@ -13,14 +13,14 @@ md 6379 6380 6381
 The rest is history... 
 
 ---
-[The Strange Case Of Sentinel And ACL](https://www.gutenberg.org/files/43/43-h/43-h.htm)
+### [The Strange Case Of Sentinel And ACL](https://www.gutenberg.org/files/43/43-h/43-h.htm)
 
 **Argument**
 
 Strange enough! *Sentinel* has intriguing bearing on `ACL`... 
 
 
-I. System setup
+#### I. System setup
 According to instructions on [RU330](https://redis.io/university/courses/ru330/), to disable `default` user in `acl.conf` 
 ```
 user default off 
@@ -70,7 +70,7 @@ ACL GENPASS
 ```
 
 
-II. Check to see if failover success 
+#### II. Check to see if failover success 
 ```
 make up 
 make master 
@@ -80,7 +80,7 @@ make master
 ```
 
 
-III. Check to see if `default` user is password protected
+#### III. Check to see if `default` user is password protected
 ```
 redis-cli -p 6381
 ping
@@ -90,7 +90,7 @@ exit
 ```
 
 
-IV. Check to see if we can manually failover a server
+#### IV. Check to see if we can manually failover a server
 ```
 make sentinel
 SENTINEL SENTINELS myprimary
