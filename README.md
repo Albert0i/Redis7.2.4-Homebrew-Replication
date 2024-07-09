@@ -113,7 +113,7 @@ When our primary was put to death, replica2 is promoted as new primary, replica1
 
 ![alt new primary](img/new-primary.JPG)
 
-Welladay!, [life is capricious](https://www.goodreads.com/quotes/10624029-life-is-capricious-one-moment-you-re-high-on-a-mountain)... 
+Wel-a-day!, [life is capricious](https://www.goodreads.com/quotes/10624029-life-is-capricious-one-moment-you-re-high-on-a-mountain)... 
 
 
 #### VI. Restore config
