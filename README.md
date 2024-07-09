@@ -109,6 +109,7 @@ make replication
 make role
 ```
 
+When our primary was put to death, replica2 is promoted as new primary, replica1 points to new primary flatteringly. Alas!, [life is capricious](https://www.goodreads.com/quotes/10624029-life-is-capricious-one-moment-you-re-high-on-a-mountain)... as soon as ex-primary revives, for a very short of time, he still *believes* that he is on the throne of primary even though sentinels report that new primary is elected. Wandering and lingering for a while, it comes to realize the existence of new primary... Daunted by the situation, he joins the new primary as slave without a murmur... 
 
 #### VI. Restore config
 ```
